@@ -3310,12 +3310,12 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 }
 
 .site-section {
-    margin: 2.5em 0
+    padding: 2.5rem 0;
 }
 
 @media (min-width:768px) {
     .site-section {
-        margin: 5em 0
+        padding: 2.5em 0;
     }
 }
 
@@ -3873,7 +3873,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 
 @media (max-width:991.98px) {
     .site-section {
-        margin: 3rem 0
+        padding: 1.5rem 0;
     }
 }
 
