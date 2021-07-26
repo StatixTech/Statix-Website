@@ -3310,12 +3310,12 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 }
 
 .site-section {
-    padding: 2.5rem 0;
+    padding: 3.5rem 0;
 }
 
 @media (min-width:768px) {
     .site-section {
-        padding: 2.5em 0;
+        padding: 3.5em 0;
     }
 }
 
@@ -3398,8 +3398,8 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 
 @media (max-width:991.98px) {
     .site-navbar {
-        padding-top: 0rem;
-        padding-bottom: 0rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
 }
 
@@ -3873,7 +3873,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 
 @media (max-width:991.98px) {
     .site-section {
-        padding: 1.5rem 0;
+        padding: 5.5rem 0;
     }
 }
 
@@ -4417,8 +4417,3 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
     margin: 1em;
     color: green;
 }
-/* 
-.site-navbar.js-sticky-header.site-navbar-target {
-    display: flex;
-    align-items: center;
-} */
