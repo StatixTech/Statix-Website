@@ -15,7 +15,7 @@ jQuery(document).ready(function ($) {
 
 		$('.js-clone-nav').each(function () {
 			var $this = $(this);
-			$this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
+			// $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
 		});
 
 
@@ -142,6 +142,7 @@ jQuery(document).ready(function ($) {
 
 	/** Contact us form submission logic */
 	$("#contactUsSubmitBtn").click(() => {
+		$('#emailSuccessMsg').addClass('hidden');
 		const firstName = $("#firstName");
 		const lastName = $("#lastName");
 		const emailAddress = $("#emailAddress");
@@ -156,9 +157,9 @@ jQuery(document).ready(function ($) {
 			hasError = true;
 			lastName.siblings('.errMsg').removeClass('hidden').addClass('visible');
 		}
-		if (isEmpty(messageContent.val())) {
+		if (isEmpty(emailAddress.val()) || !isEmailValid(emailAddress.val())) {
 			hasError = true;
-			messageContent.siblings('.errMsg').removeClass('hidden').addClass('visible');
+			emailAddress.siblings('.errMsg').removeClass('hidden').addClass('visible');
 		}
 		if (isEmpty(messageContent.val())) {
 			hasError = true;
@@ -168,18 +169,29 @@ jQuery(document).ready(function ($) {
 		console.log(firstName.val(), lastName.val(), emailAddress.val(), messageContent.val());
 
 		if (hasError) return;
+
+		$.post("demo_test_post.asp",
+			{
+				firstName: firstName.val(),
+				lastName: firstName.val(),
+				email: emailAddress.val(),
+				messageContent: messageContent.val()
+			},
+			(data, status) => $('#emailSuccessMsg').addClass('visible')
+		);
 	});
 
 	$(".contact-form input.form-control, .contact-form textarea.form-control").keyup((e) => {
-		console.log('test', isEmpty(e.target.value))
 		// validate
+		let hasError = false;
 		if (isEmpty(e.target.value)) {
+			hasError = true;
 			$(e.target).siblings('.errMsg').removeClass('hidden').addClass('visible');
 		} else {
 			$(e.target).siblings('.errMsg').removeClass('visible').addClass('hidden');
 		}
-		if (e.target.id === "emailAddress") {
-			console.log('check email');
+		if (!hasError && e.target.id === "emailAddress" && !isEmailValid(e.target.value)) {
+			$(e.target).siblings('.errMsg').removeClass('hidden').addClass('visible');
 		}
 	});
 
@@ -188,5 +200,10 @@ jQuery(document).ready(function ($) {
 			return true;
 		}
 		return false;
+	}
+
+	function isEmailValid(email) {
+		const pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		return pattern.test(email);
 	}
 });

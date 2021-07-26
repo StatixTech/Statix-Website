@@ -3398,8 +3398,8 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 
 @media (max-width:991.98px) {
     .site-navbar {
-        padding-top: 3rem;
-        padding-bottom: 3rem
+        padding-top: 0rem;
+        padding-bottom: 0rem;
     }
 }
 
@@ -4411,4 +4411,9 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 
 .visible {
     display: inherit;
+}
+
+#emailSuccessMsg {
+    margin: 1em;
+    color: green;
 }
