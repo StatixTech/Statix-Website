@@ -141,7 +141,7 @@ jQuery(document).ready(function ($) {
 		$(".site-nav-list a.active").removeClass('active');
 		$(e.target).addClass('active');
 	});
-
+	
 	/** Contact us form submission logic */
 	$("#contactUsSubmitBtn").click(() => {
 		hasTriedToSubmit = true;
@@ -172,7 +172,7 @@ jQuery(document).ready(function ($) {
 		console.log(firstName.val(), lastName.val(), emailAddress.val(), messageContent.val());
 
 		if (hasError) return;
-
+		$("#contactUsSubmitBtn .spinner").removeClass('hidden').addClass('visible');
 		$.post("https://statixtech.herokuapp.com/contactUs",
 			{
 				firstName: firstName.val(),
@@ -180,7 +180,13 @@ jQuery(document).ready(function ($) {
 				email: emailAddress.val(),
 				content: messageContent.val()
 			},
-			(data, status) => $('#emailSuccessMsg').addClass('visible')
+			(data, status) => {
+				$("#contactUsSubmitBtn .spinner").removeClass('visible').addClass('hidden');
+				if (status === 'success') {
+					$('#emailSuccessMsg').removeClass('hidden').addClass('visible');
+					clearForm();
+				}
+			}
 		);
 	});
 
@@ -209,5 +215,12 @@ jQuery(document).ready(function ($) {
 	function isEmailValid(email) {
 		const pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 		return pattern.test(email);
+	}
+
+	function clearForm() {
+		$("#firstName").val('');
+		$("#lastName").val('');
+		$("#emailAddress").val('');
+		$("#messageContent").val('');
 	}
 });
