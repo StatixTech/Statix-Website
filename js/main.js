@@ -173,6 +173,7 @@ jQuery(document).ready(function ($) {
 
 		if (hasError) return;
 		$("#contactUsSubmitBtn .spinner").removeClass('hidden').addClass('visible');
+		$("#contactUsSubmitBtn").prop('disabled', true);
 		$.post("https://statixtech.herokuapp.com/contactUs",
 			{
 				firstName: firstName.val(),
@@ -182,6 +183,7 @@ jQuery(document).ready(function ($) {
 			},
 			(data, status) => {
 				$("#contactUsSubmitBtn .spinner").removeClass('visible').addClass('hidden');
+				$("#contactUsSubmitBtn").prop('disabled', false);
 				if (status === 'success') {
 					$('#emailSuccessMsg').removeClass('hidden').addClass('visible');
 					clearForm();
