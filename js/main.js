@@ -11,6 +11,8 @@ jQuery(document).ready(function ($) {
 	$(".loader").delay(1000).fadeOut("slow");
 	$("#overlayer").delay(1000).fadeOut("slow");
 
+	let hasTriedToSubmit = false;
+
 	var siteMenuClone = function () {
 
 		$('.js-clone-nav').each(function () {
@@ -142,6 +144,7 @@ jQuery(document).ready(function ($) {
 
 	/** Contact us form submission logic */
 	$("#contactUsSubmitBtn").click(() => {
+		hasTriedToSubmit = true;
 		$('#emailSuccessMsg').addClass('hidden');
 		const firstName = $("#firstName");
 		const lastName = $("#lastName");
@@ -170,18 +173,19 @@ jQuery(document).ready(function ($) {
 
 		if (hasError) return;
 
-		$.post("demo_test_post.asp",
+		$.post("https://statixtech.herokuapp.com/contactUs",
 			{
 				firstName: firstName.val(),
 				lastName: firstName.val(),
 				email: emailAddress.val(),
-				messageContent: messageContent.val()
+				content: messageContent.val()
 			},
 			(data, status) => $('#emailSuccessMsg').addClass('visible')
 		);
 	});
 
 	$(".contact-form input.form-control, .contact-form textarea.form-control").keyup((e) => {
+		if (!hasTriedToSubmit) return;
 		// validate
 		let hasError = false;
 		if (isEmpty(e.target.value)) {
