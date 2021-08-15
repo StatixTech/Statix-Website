@@ -2658,10 +2658,6 @@ body.compensate-for-scrollbar {
     width: 100%
 }
 
-.owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
-    display: none
-}
-
 .owl-carousel.owl-loaded {
     display: block
 }
@@ -4057,7 +4053,10 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 }
 
 .block-13 .owl-dots .owl-dot {
-    display: inline-block
+    display: inline-block;
+    border: none;
+    background: transparent;
+    outline: none;
 }
 
 .block-13 .owl-dots .owl-dot span {

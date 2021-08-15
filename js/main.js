@@ -136,12 +136,46 @@ jQuery(document).ready(function ($) {
 	};
 	siteScroll();
 
+	var siteCarousel = function () {
+		if ($('.nonloop-block-13').length > 0) {
+			$('.nonloop-block-13').owlCarousel({
+				center: false,
+				items: 1,
+				loop: true,
+				stagePadding: 0,
+				margin: 0,
+				smartSpeed: 1000,
+				autoplay: true,
+				responsive: {
+					600: {
+						margin: 0,
+						nav: true,
+						items: 2
+					},
+					1000: {
+						margin: 0,
+						stagePadding: 0,
+						nav: true,
+						items: 2
+					},
+					1200: {
+						margin: 0,
+						stagePadding: 0,
+						nav: true,
+						items: 3
+					}
+				}
+			});
+		}
+	};
+	siteCarousel();
+
 	/** Navigation click */
 	$(".site-nav-list a").click((e) => {
 		$(".site-nav-list a.active").removeClass('active');
 		$(e.target).addClass('active');
 	});
-	
+
 	/** Contact us form submission logic */
 	$("#contactUsSubmitBtn").click(() => {
 		hasTriedToSubmit = true;
